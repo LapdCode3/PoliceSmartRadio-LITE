@@ -31,14 +31,10 @@ namespace PoliceSmartRadio
             Functions.OnOnDutyStateChanged += Functions_OnOnDutyStateChanged;
         }
 
-        internal static string[] path = new string[] { "Plugins/LSPDFR/PoliceSmartRadio/"};
-        internal static string[] FilesToCheckFor = new string[] { "Audio/ButtonScroll.wav", "Audio/ButtonSelect.wav", "PlateCheck/TargetPlate1.wav", "Audio/PanicButton.wav",
+        internal static string path = "Plugins/LSPDFR/PoliceSmartRadio/";
+        internal static string[] FilesToCheckFor = new string[] { "Audio/ButtonScroll.wav", "Audio/ButtonSelect.wav", "Audio/PlateCheck/TargetPlate1.wav", "Audio/PanicButton.wav",
             "Config/GeneralConfig.ini", "Config/ControllerConfig.ini", "Config/KeyboardConfig.ini", "Config/DisplayConfig.ini", "Config/PanicButton.ini" };
-        //internal static string[] FilesToCheckFor = new string[] { "Plugins/LSPDFR/PoliceSmartRadio/Audio/ButtonScroll.wav", "Plugins/LSPDFR/PoliceSmartRadio/Audio/ButtonSelect.wav",
-        //    "Plugins/LSPDFR/PoliceSmartRadio/Audio/PlateCheck/TargetPlate1.wav", "Plugins/LSPDFR/PoliceSmartRadio/Audio/PanicButton.wav",
-        //    "Plugins/LSPDFR/PoliceSmartRadio/Config/GeneralConfig.ini", "Plugins/LSPDFR/PoliceSmartRadio/Config/ControllerConfig.ini", "Plugins/LSPDFR/PoliceSmartRadio/Config/KeyboardConfig.ini", "Plugins/LSPDFR/PoliceSmartRadio/Config/DisplayConfig.ini",
-        //    "Plugins/LSPDFR/PoliceSmartRadio/Config/PanicButton.ini" };
-
+        
         public static void Functions_OnOnDutyStateChanged(bool onDuty)
         {
             if (onDuty)
@@ -49,9 +45,9 @@ namespace PoliceSmartRadio
                 
                 foreach (string s in FilesToCheckFor)
                 {
-                    if (!File.Exists(s))
+                    if (!File.Exists(path+s))
                     {
-                        Game.LogTrivial("Couldn't find the required file at " + s);
+                        Game.LogTrivial("Couldn't find the required file at " + path + s);
                         CheckPassedSuccessfully = false;
                     }
                 }
