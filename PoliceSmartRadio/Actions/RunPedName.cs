@@ -23,13 +23,7 @@ namespace PoliceSmartRadio.Actions
             {
                 Persona pers = Functions.GetPersonaForPed(p);
                 Game.DisplayNotification("~b~" + PoliceSmartRadio.PlayerName + "~s~: Dispatch, could you run a person check through for me? It's ~b~" + pers.FullName + "~s~, born on ~b~" + pers.Birthday.ToShortDateString() + "~s~.");
-                if (PoliceSmartRadio.IsLSPDFRPluginRunning("British Policing Script", new Version("0.8.2.0")))
-                {
-                    API.BritishPolicingScriptFunctions.RunPedCheck(p, 4000);
-                }
-                else {
-                    displayRecords(pers);
-                }
+                displayRecords(pers);
             }
         }
 

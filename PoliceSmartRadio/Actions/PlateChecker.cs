@@ -252,17 +252,11 @@ namespace PoliceSmartRadio.Actions
                         GameFiber.Wait(4000);
                         GameFiber.StartNew(checker.PlayAudio);
                         GameFiber.Wait(500);
-                        if (PoliceSmartRadio.IsLSPDFRPluginRunning("British Policing Script", new Version("0.8.0.0")) && vehicleToCheck.Exists())
-                        {
-                            API.BritishPolicingScriptFunctions.RunLicencePlateCheck(vehicleToCheck);
-                        }
-                        else
-                        {
-                            Game.DisplayNotification("~b~Dispatch: ~s~" + PoliceSmartRadio.PlayerName + ", plate check: ~n~~b~Plate: " + checker.LicencePlate + "~n~Model: " + checker.vehModel
-                                + "~n~Reg. Year: " + checker.vehicleYear + "~n~Registered Owner: ~y~" + checker.DriverPersona.FullName + "~b~~n~Citations: " + checker.DriverPersona.Citations);
-                            GameFiber.Wait(2000);
-                            Game.DisplayNotification(checker.Flags);
-                        }
+                        
+                        Game.DisplayNotification("~b~Dispatch: ~s~" + PoliceSmartRadio.PlayerName + ", plate check: ~n~~b~Plate: " + checker.LicencePlate + "~n~Model: " + checker.vehModel
+                            + "~n~Reg. Year: " + checker.vehicleYear + "~n~Registered Owner: ~y~" + checker.DriverPersona.FullName + "~b~~n~Citations: " + checker.DriverPersona.Citations);
+                        GameFiber.Wait(2000);
+                        Game.DisplayNotification(checker.Flags);
                         if (vehCurrentlyBeingChecked == vehicleToCheck)
                         {
                             vehCurrentlyBeingChecked = null;

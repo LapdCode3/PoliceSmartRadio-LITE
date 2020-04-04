@@ -22,7 +22,6 @@ namespace PoliceSmartRadio
         public static bool buttonspassed = false;
         private static void MainLogic()
         {
-            
             DisplayHandler.InitialiseTextures(true);
             Actions.Panic.IniSetup();
             registerActions();      
@@ -35,10 +34,11 @@ namespace PoliceSmartRadio
             API.Functions.AddActionToButton(Actions.Panic.Main, "panic");
             API.Functions.AddActionToButton(Actions.RunPedName.Main, Actions.RunPedName.IsAvailable, "pedcheck");
             API.Functions.AddActionToButton(Actions.EndCall.Main, Functions.IsCalloutRunning, "endcall");
-            //API.Functions.AddActionToButton(Actions.K9.Main, "k9");
+            API.Functions.AddActionToButton(Actions.K9.Main, "k9");
             buttonspassed = true;
             Game.LogTrivial("All PoliceSmartRadio default buttons have been assigned actions.");
-            if (IsLSPDFRPluginRunning("VocalDispatch", new Version("1.6.0.0"))) {
+            if (IsLSPDFRPluginRunning("VocalDispatch", new Version("1.6.0.0")))
+            {
                 VocalDispatchHelper vc_platecheck = new VocalDispatchHelper();
                 vc_platecheck.SetupVocalDispatchAPI("PoliceSmartRadio.PlateCheck", new VocalDispatchHelper.VocalDispatchEventDelegate(Actions.PlateChecker.vc_main));
                 VocalDispatchHelper vc_requestpit = new VocalDispatchHelper();
@@ -51,7 +51,6 @@ namespace PoliceSmartRadio
                 vc_endcall.SetupVocalDispatchAPI("PoliceSmartRadio.EndCall", new VocalDispatchHelper.VocalDispatchEventDelegate(Actions.EndCall.vc_main));
                 Game.LogTrivial("PoliceSmartRadio Vocal Dispatch Integration complete.");
             }
-            
         }
 
         public static bool IsLSPDFRPluginRunning(string Plugin, Version minversion = null)
@@ -69,12 +68,11 @@ namespace PoliceSmartRadio
 
         internal static void Initialise()
         {
-            Game.LogTrivial("PoliceSmartRadio, developed by Albo1125, has been loaded successfully!");
+            Game.LogTrivial("PoliceSmartRadio-LITE has been loaded successfully!");
             GameFiber.StartNew(delegate
             {                
                 GameFiber.Wait(6000);
-                Game.DisplayNotification("~b~PoliceSmartRadio~s~, developed by ~b~Albo1125, ~s~has been loaded ~g~successfully.");
-
+                Game.DisplayNotification("~w~PoliceSmartRadio-LITE~n~~y~v" + Assembly.GetExecutingAssembly().GetName().Version.ToString() + "~o~ mod by FAC851~n~(original by Albo1125)~n~~b~has been loaded. ~g~Enjoy!");
             });
             MainLogic();
         }        
