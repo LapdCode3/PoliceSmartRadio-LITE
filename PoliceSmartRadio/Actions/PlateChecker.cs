@@ -196,12 +196,14 @@ namespace PoliceSmartRadio.Actions
                 //read out the plate characters
                 foreach (char character in LicencePlate.ToUpper())
                 {
+                    if (!Char.IsWhiteSpace(character))
+                    {
+                        SoundPlayer plyr = new SoundPlayer(PlateAudioPathModifier + character + AudioPathExtension);
+                        plyr.Play();
 
-                    SoundPlayer plyr = new SoundPlayer(PlateAudioPathModifier + character + AudioPathExtension);
-                    plyr.Play();
-
-                    GameFiber.Wait(500);
-                    plyr.Dispose();
+                        GameFiber.Wait(500);
+                        plyr.Dispose();
+                    }
                 }
                 //read out the flag information
                 foreach (string flag in AudioFlags)
