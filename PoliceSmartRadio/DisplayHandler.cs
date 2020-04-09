@@ -135,7 +135,7 @@ namespace PoliceSmartRadio
             InVehicleButtonPages = SetupButtonPage(inVehicleXML);
             if (firstTimeLaunch)
             {
-                HandleFirstLaunch();
+                Albo1125.Common.CommonLibrary.ExtensionMethods.DisplayPopupTextBoxWithConfirmation("PoliceSmartRadio: First Launch", "Welcome to PoliceSmartRadio! First time launch setup will now proceed. You can select which buttons to add on foot and in vehilce. If you make a mistake or change your mind, you will have to edit the XML files manually.", true);
             }
             CurrentButtonPages = OnFootButtonPages;
             CurrentPage = CurrentButtonPages.Count > 0 ? CurrentButtonPages[0] : new ButtonPage();
@@ -917,33 +917,11 @@ The <Enabled> values MUST be either 'true' or 'false' (without quotation marks).
 
                 if (!newButtonsInQueue)
                 {
-                    
-                    Game.DisplayNotification("This was the last new button in the queue. LSPDFR will now reload so ~b~PoliceSmartRadio~s~ can refresh itself. Type 'forceduty' in console once it's done.");
-                    GameFiber.Sleep(3000);
-                    Game.ReloadActivePlugin();
+                    Game.LogTrivial("PoliceSmartRadio-LITE: RESTART needed after button setup!");
+                    Game.DisplayNotification("~r~QUIT and RESTART the game after all buttons are setup!");
+                    Albo1125.Common.CommonLibrary.ExtensionMethods.DisplayPopupTextBoxWithConfirmation("PoliceSmartRadio: Setup", "If there are no additional buttons after this message, QUIT and RESTART the the game!", false);
                 }
             });
-        }
-        private static Popup firstLaunchPopup1 = new Popup("PoliceSmartRadio by Albo1125: First Launch", "Welcome to PoliceSmartRadio! First time launch setup will now proceed. " + Environment.NewLine + " It is important to fully understand how to walk through this - you only have one opportunity to do the easy first time setup. I have created a video that guides you through the process. Would you like to open this now?",
-                new List<string>() { "Yes, please help me set up PoliceSmartRadio the way I want it.", "No, I have already watched the video or have read the documentation and I know what to do." }, false, true, firstLaunchPopupCb);
-        private static Popup firstLaunchPopup2 = new Popup("PoliceSmartRadio by Albo1125: First Launch", "Are you sure? You will only get one opportunity to do the first time setup easily ingame. If you make a mistake and change your mind, you will have to edit the XML files manually.",
-                        new List<string>() { "Yes, please help me set up PoliceSmartRadio the way I want it.", "No, I have already watched the video or have read the documentation and I know what to do." }, false, true);
-
-        private static void HandleFirstLaunch()
-        {
-
-            firstLaunchPopup1.Display();
-            //firstLaunchPopup2.Display();
-            
-        }
-
-        private static void firstLaunchPopupCb(Popup p)
-        {
-            if (p.IndexOfGivenAnswer == 0)
-            {
-                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=aJPA_nIEZxo");
-            }
-            
         }
 
     }

@@ -203,11 +203,6 @@ namespace Albo1125.Common.CommonLibrary
                             Game.IsPaused = true;
                         }
                         GameFiber.Yield();
-                        if (timer.ElapsedMilliseconds > 25000)
-                        {
-                            Game.DisplayNotification("A textbox is currently being shown in the centre of your screen. If you can't see it, RPH had an issue initializing with DirectX and your RPH console won't work either - ask for support on the RPH Discord (link at www.ragepluginhook.net");
-                            timer.Restart();
-                        }
                         if (Game.IsKeyDown(Keys.Enter))
                         {
                             Game.LogTrivial("ClosePopup is pressed");

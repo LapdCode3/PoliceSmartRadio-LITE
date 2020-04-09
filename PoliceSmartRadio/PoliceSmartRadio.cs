@@ -71,8 +71,8 @@ namespace PoliceSmartRadio
             Game.LogTrivial("PoliceSmartRadio-LITE has been loaded successfully!");
             GameFiber.StartNew(delegate
             {                
-                GameFiber.Wait(6000);
-                Game.DisplayNotification("~w~PoliceSmartRadio-LITE~n~~y~v" + Assembly.GetExecutingAssembly().GetName().Version.ToString() + "~o~ mod by FAC851~n~(original by Albo1125)~n~~b~has been loaded. ~g~Enjoy!");
+                GameFiber.Wait(1000);
+                Game.DisplayNotification("PoliceSmartRadio-LITE~n~~y~v" + Assembly.GetExecutingAssembly().GetName().Version.ToString() + "-LITE~o~ by FAC851~n~(original by Albo1125)~n~~b~has been loaded. ~g~Enjoy!");
             });
             MainLogic();
         }        
