@@ -860,6 +860,7 @@ The <Enabled> values MUST be either 'true' or 'false' (without quotation marks).
             {
                 Game.LogTrivial("Default action for " + FullName);
                 Game.DisplayNotification("No action has (yet) been assigned to ~b~" + FullName + ". ~s~No plugin has assigned itself to the button, or you may have gone on duty twice - make sure only to go on duty once.");
+                Game.DisplayNotification("~r~QUIT and RESTART the game before going on duty again!~n~~y~Or type 'reloadplugins' in console (F4), followed by 'forceduty'.");
             }
 
             public void updateRectangle(int buttonNumber)
@@ -918,8 +919,8 @@ The <Enabled> values MUST be either 'true' or 'false' (without quotation marks).
                 if (!newButtonsInQueue)
                 {
                     Game.LogTrivial("PoliceSmartRadio-LITE: RESTART needed after button setup!");
-                    Game.DisplayNotification("~r~QUIT and RESTART the game after all buttons are setup!");
-                    Albo1125.Common.CommonLibrary.ExtensionMethods.DisplayPopupTextBoxWithConfirmation("PoliceSmartRadio: Setup", "If there are no additional buttons after this message, QUIT and RESTART the the game!", false);
+                    Game.DisplayNotification("~r~QUIT and RESTART the game after all buttons are setup!~n~~y~Or type 'reloadplugins' in console (F4), followed by 'forceduty'.");
+                    Albo1125.Common.CommonLibrary.ExtensionMethods.DisplayPopupTextBoxWithConfirmation("PoliceSmartRadio: Setup", "If there are no additional buttons to setup after closing this message, QUIT and RESTART the the game! Or type 'reloadplugins' in console (F4), followed by 'forceduty'.", false);
                 }
             });
         }
